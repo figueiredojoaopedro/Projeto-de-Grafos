@@ -1,10 +1,12 @@
+from sqlalchemy import true
+
+
 def main():
     matriz = open("./A.txt", "r");
     A = list();
     B = list();
     arestasMultiplas = list();
     lacos = list();
-
 
     for line in matriz:
         for i in line.split():
@@ -45,6 +47,32 @@ def main():
     for item in lacos:
         print('\nO(s) local(s) de laços é: %d %d [lin][col]' % ((item + 1), (item + 1)), end=', ');
     print('\n');
+
+
+    #resultado grafo regular
+    print('\nO grafo é regular? ', grafoRegular());
+
+# checka se o grafo é regular ou não
+def grafoRegular():
+    # colocando o txt em uma matriz array
+    matriz = open("./A.txt", "r");
+    A = list();
+    aux = 0;
+    for line in matriz:
+            A.append(list(map(int, line.split())));
+    matriz.close();
+    print(A);
+    # verificando se o grafo sem laços
+    for line in A:
+        for col in range(len(A)):
+            if line[col] >= 1 and (col == aux):
+                return False;
+            elif line[col] == aux:
+                check = True;
+        aux = aux + 1;
+    if check == true:
+        return True;
+
 
 if __name__ == '__main__':
     main()
