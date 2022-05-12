@@ -50,28 +50,36 @@ def main():
 
 
     #resultado grafo regular
-    print('\nO grafo é regular? ', grafoRegular());
+    if grafoRegular() == True:
+        print('\nO grafo é regular.\n');
+    else:
+        print('\nO grafo não é regular.\n');
 
 # checka se o grafo é regular ou não
 def grafoRegular():
     # colocando o txt em uma matriz array
-    matriz = open("./A.txt", "r");
+    matriz = open("./B.txt", "r");
     A = list();
     aux = 0;
     for line in matriz:
             A.append(list(map(int, line.split())));
     matriz.close();
     print(A);
-    # verificando se o grafo sem laços
+    # varrendo a matriz A
     for line in A:
-        for col in range(len(A)):
-            if line[col] >= 1 and (col == aux):
-                return False;
-            elif line[col] == aux:
+        for col in range(len(A) - 1): # verificando se o grafo não tem laços e as arestas são iguais
+            if ((line[col] == line[col + 1]) and (col != aux)) or (line[col] == 0 and (col == aux)):
+                print(line[col], aux)
                 check = True;
+            else:
+                check = False;
         aux = aux + 1;
     if check == true:
         return True;
+    else:
+        return False;
+    # se a diagonal principal for diferente de zero, todos os elementos tem que ser iguais
+    # se a diagonal principal for igual a zero, todos os elementos tem que ser iguais, com exceção do elemento na diagonal principal
 
 
 if __name__ == '__main__':

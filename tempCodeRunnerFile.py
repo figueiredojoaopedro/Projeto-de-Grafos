@@ -1,1 +1,1 @@
-arestasMultiplasCol, arestasMultiplasLin
+aux
