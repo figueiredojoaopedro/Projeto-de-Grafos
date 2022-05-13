@@ -1,1 +1,1 @@
-aux
+	NArestas(soma)
